@@ -1,0 +1,37 @@
+/* Tracker.css */
+.lavender-background {
+    background-color: lavender;
+    padding: 20px; /* Adjust padding as needed */
+    border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+  }
+  
+  .welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .expenseForm {
+    margin-top: 20px;
+  }
+  
+  .expenseList {
+    margin-top: 20px;
+  }
+  
+  .totals {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  /* Optional: Customize button styles */
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
