@@ -1,10 +1,9 @@
-// tracker.js
 import React, { Component } from 'react';
 import './Tracker.css';
 import fire from '../../config/Fire';
 import Transaction from './Transaction/Transaction';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-
+import UserProfile from '../Forms/UserProfile';
 class Tracker extends Component {
   constructor(props) {
     super(props);
@@ -77,10 +76,11 @@ class Tracker extends Component {
   render() {
     const { currentUser, expenses, description, price, date } = this.state;
 
-    return (
+    return ( 
       <div className="container mt-5 lavender-background">
+           <UserProfile/>
         <div className="welcome bg-light p-3 ">
-          <span>Hi, {currentUser.displayName}!</span>
+          <span>Hi, {currentUser.displayName}! Welcome to Expense Tracker</span>
           <button className="btn btn-danger ml-2" onClick={this.logout}>
             Exit
           </button>
@@ -138,6 +138,7 @@ class Tracker extends Component {
           <div>Total Expenses: {this.getTotalExpenses()}</div>
           <div>Total Price: ${this.getTotalPrice()}</div>
         </div>
+     
       </div>
     );
   }

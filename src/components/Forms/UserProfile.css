@@ -1,0 +1,33 @@
+/* UserProfile.css */
+
+.UserProfileContainer {
+    text-align: center;
+    margin: 20px;
+}
+
+.ProfileIcon {
+    cursor: pointer;
+    font-size: 2em;
+    color: #3498db; /* Change the color as needed */
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.SignOutIcon {
+    cursor: pointer;
+    font-size: 2em;
+    color: #e74c3c; /* Change the color as needed */
+    margin-left: 10px; /* Adjust the margin as needed */
+}
+
+.EditModeContainer {
+    margin-top: 20px;
+}
+
+.DisplayModeContainer {
+    margin-top: 20px;
+}
+
+.profile-incomplete-message {
+    color: red;
+    margin-top: 10px;
+}
