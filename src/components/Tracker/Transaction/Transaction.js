@@ -1,4 +1,3 @@
-// Transaction.js
 import React, { useState } from 'react';
 
 const Transaction = ({ expense, onEdit, onDelete }) => {
@@ -63,3 +62,4 @@ const Transaction = ({ expense, onEdit, onDelete }) => {
 };
 
 export default Transaction;
+

@@ -23,20 +23,30 @@ class Tracker extends Component {
   }
 
   componentDidMount() {
-    // Load expenses from localStorage
-    const storedExpenses = JSON.parse(localStorage.getItem('expenses'));
-    if (storedExpenses) {
-      this.setState({ expenses: storedExpenses });
-    }
-
-    // Fetch expenses from Firebase Firestore
-    this.expensesCollection.onSnapshot((snapshot) => {
+    // Attach the onSnapshot listener and save the unsubscribe function
+    this.unsubscribe = this.expensesCollection.onSnapshot((snapshot) => {
       const expenses = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       this.setState({ expenses });
-
-      // Save expenses to localStorage
-      localStorage.setItem('expenses', JSON.stringify(expenses));
     });
+
+    // Fetch expenses from Firebase Firestore when the page is refreshed
+    window.addEventListener('beforeunload', this.handlePageRefresh);
+  }
+
+  // Handle page refresh
+  handlePageRefresh = () => {
+    // Fetch expenses from Firebase Firestore
+    this.expensesCollection.get().then((snapshot) => {
+      const expenses = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      this.setState({ expenses });
+    });
+  };
+
+  componentWillUnmount() {
+    // Detach the onSnapshot listener when the component is unmounted
+    this.unsubscribe && this.unsubscribe();
+    // Remove the event listener when the component is unmounted
+    window.removeEventListener('beforeunload', this.handlePageRefresh);
   }
 
   handleInputChange = (event) => {
@@ -59,25 +69,19 @@ class Tracker extends Component {
         .add(newExpense)
         .then((docRef) => {
           // Update local state with the new expense ID
-          this.setState(
-            (prevState) => ({
-              expenses: [
-                ...prevState.expenses,
-                {
-                  id: docRef.id,
-                  ...newExpense,
-                },
-              ],
-              description: '',
-              price: '',
-              date: '',
-              selectedCategory: '',
-            }),
-            // Save expenses to localStorage after updating state
-            () => {
-              localStorage.setItem('expenses', JSON.stringify(this.state.expenses));
-            }
-          );
+          this.setState((prevState) => ({
+            expenses: [
+              ...prevState.expenses,
+              {
+                id: docRef.id,
+                ...newExpense,
+              },
+            ],
+            description: '',
+            price: '',
+            date: '',
+            selectedCategory: '',
+          }));
         })
         .catch((error) => {
           console.error('Error adding expense to Firestore:', error);
@@ -201,8 +205,8 @@ class Tracker extends Component {
               </button>
             </div>
           </div>
-        </div>
-        <div className="expenseList mt-3">
+       
+          <div className="expenseList mt-3">
           {expenses.map((expense) => (
             <Transaction
               key={expense.id}
@@ -210,7 +214,9 @@ class Tracker extends Component {
               onEdit={this.handleEditExpense}
               onDelete={this.handleDeleteExpense}
             />
-          ))}
+  ))}
+</div>
+        
         </div>
         <div className="totals mt-3">
           <div>Total Expenses: {this.getTotalExpenses()}</div>
