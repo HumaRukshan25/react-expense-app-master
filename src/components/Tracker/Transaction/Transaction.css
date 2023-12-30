@@ -1,0 +1,22 @@
+.transactionItem {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .transactionItem input {
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+  
+  .transactionItem button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    
+    cursor: pointer;
+  }
+  
+  .transactionItem div {
+    margin-bottom: 5px;
+  }
+  

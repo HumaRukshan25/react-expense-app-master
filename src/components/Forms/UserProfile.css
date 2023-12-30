@@ -1,33 +1,45 @@
-/* UserProfile.css */
 
-.UserProfileContainer {
-    text-align: center;
-    margin: 20px;
-}
-
-.ProfileIcon {
-    cursor: pointer;
-    font-size: 2em;
-    color: #3498db; /* Change the color as needed */
-    margin-right: 10px; /* Adjust the margin as needed */
-}
-
-.SignOutIcon {
-    cursor: pointer;
-    font-size: 2em;
-    color: #e74c3c; /* Change the color as needed */
-    margin-left: 10px; /* Adjust the margin as needed */
-}
-
-.EditModeContainer {
-    margin-top: 20px;
-}
-
-.DisplayModeContainer {
-    margin-top: 20px;
-}
 
 .profile-incomplete-message {
     color: red;
     margin-top: 10px;
-}
+  }
+  
+  /* Style for the FontAwesome icon */
+  .fa-user-circle {
+    font-size: 36px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  /* Style for the input fields and labels in edit mode */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for the button in edit mode */
+  /* Style for the button in edit mode */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px; /* Add some space below the button */
+  }
+  
+  /* Style for the button in view mode */
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

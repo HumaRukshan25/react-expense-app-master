@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './Transaction.css'
 const Transaction = ({ expense, onEdit, onDelete }) => {
   const [isEditing, setEditing] = useState(false);
   const [updatedExpense, setUpdatedExpense] = useState(expense);
