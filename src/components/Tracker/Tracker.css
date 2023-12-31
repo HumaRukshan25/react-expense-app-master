@@ -34,4 +34,32 @@
     background-color: #007bff;
     color: #fff;
   }
-  
+  /* Tracker.css */
+
+
+
+.light-theme {
+  background-color: #ffffff; /* Light background color */
+  color: #000000; /* Light text color */
+}
+
+/* Add styles for dark theme */
+.dark-theme {
+  background-color: #2b2b2b; /* Dark background color */
+  color: #ffffff; /* Dark text color */
+}
+
+/* Additional styles for the toggle button */
+.toggle-button {
+  background-color: #3498db; /* Toggle button background color */
+  color: #ffffff; /* Toggle button text color */
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Adjust styles when dark mode is active */
+.dark-theme .toggle-button {
+  background-color: #e74c3c; /* Dark mode toggle button background color */
+}
