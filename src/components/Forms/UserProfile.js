@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import fire from '../../config/Fire';
+import firebase from 'firebase/app';
+import 'firebase/firestore'; // Import Firestore
+
 import './UserProfile.css';
 
 class UserProfile extends Component {
@@ -12,11 +15,12 @@ class UserProfile extends Component {
         userContact: '',
         editMode: false,
         newEmail: '',
-        registrationSuccess: false, // Track user registration success
+        registrationSuccess: false,
     };
 
     componentDidMount() {
         this.authListener();
+        this.fetchUserProfileData();
     }
 
     authListener() {
@@ -35,6 +39,33 @@ class UserProfile extends Component {
         });
     }
 
+    async fetchUserProfileData() {
+        const user = fire.auth().currentUser;
+
+        if (user) {
+            const db = firebase.firestore();
+            const userRef = db.collection('users').doc(user.uid);
+
+            try {
+                const doc = await userRef.get();
+
+                if (doc.exists) {
+                    const userData = doc.data();
+                    this.setState({
+                        userName: userData.userName || '',
+                        userEmail: userData.userEmail || '',
+                        userBio: userData.userBio || '',
+                        userContact: userData.userContact || '',
+                    });
+                } else {
+                    console.log('No such document!');
+                }
+            } catch (error) {
+                console.error('Error fetching user profile data:', error);
+            }
+        }
+    }
+
     toggleEditMode = () => {
         this.setState((prevState) => ({ editMode: !prevState.editMode }));
     };
@@ -43,34 +74,30 @@ class UserProfile extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
-    saveChanges = () => {
+    saveChanges = async () => {
         const user = fire.auth().currentUser;
+
         if (user) {
-            // Check if newEmail is not empty and different from the current email
+            const db = firebase.firestore();
+            const userRef = db.collection('users').doc(user.uid);
+
             if (this.state.newEmail && this.state.newEmail !== this.state.userEmail) {
-                user.updateEmail(this.state.newEmail)
-                    .then(() => {
-                        // Email update successful
-                        this.setState({ userEmail: this.state.newEmail, newEmail: '' });
-                    })
-                    .catch((error) => {
-                        // Handle error
-                        console.error('Error updating email:', error);
-                    });
+                await user.updateEmail(this.state.newEmail);
+                this.setState({ userEmail: this.state.newEmail, newEmail: '' });
             }
 
-            user.updateProfile({
+            await userRef.set({
+                userName: this.state.userName,
+                userEmail: this.state.userEmail,
+                userBio: this.state.userBio,
+                userContact: this.state.userContact,
+            });
+
+            await user.updateProfile({
                 displayName: this.state.userName,
-                // Update other profile details as needed
-            })
-                .then(() => {
-                    // Update successful
-                    this.toggleEditMode();
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error('Error updating profile:', error);
-                });
+            });
+
+            this.toggleEditMode();
         }
     };
 
