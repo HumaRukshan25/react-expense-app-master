@@ -1,6 +1,6 @@
 .regField {
     width: 100%;
-    background-color: #f7f7f7;
+    background-color: #e2e2e2;
     color: #000;
     border: 1px solid #ddd;
     padding: 15px;
@@ -10,7 +10,7 @@
 
 .submitBtn {
     width: 100%;
-    background: #425f9c;
+    background: #0d0a0e;
     border: 0;
     color: #fff;
     padding: 15px;

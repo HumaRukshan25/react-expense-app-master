@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './Tracker.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import fire from '../../config/Fire';
 import Transaction from './Transaction/Transaction';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import UserProfile from '../Forms/UserProfile';
-import themeReducer from './themeReducer'; // Update the path accordingly
+import themeReducer from './themeReducer';
 
 class Tracker extends Component {
+  // ... (existing code)
   constructor(props) {
     super(props);
 
@@ -139,8 +140,8 @@ getTotalPrice = () => {
 logout = () => {
   fire.auth().signOut();
 };
-
-  // ... (unchanged methods)
+  
+// ... (unchanged methods)
 
   handleActivatePremium = () => {
     const totalExpenses = parseFloat(this.getTotalPrice());
@@ -184,90 +185,97 @@ logout = () => {
     window.removeEventListener('beforeunload', this.handlePageRefresh);
   }
 
+
   render() {
     const { currentUser, expenses, description, price, date, selectedCategory, darkMode, isPremiumActivated } = this.state;
-
-    // Sample list of expense categories
     const expenseCategories = ['Food', 'Petrol', 'Salary', 'Other'];
 
     return (
-      <div className={`container mt-5 ${darkMode ? 'dark-theme' : 'light-theme'}`}>
-        <UserProfile />
+      <div className={`container mt-5 ${darkMode ? 'dark-theme' : 'lavender-background'}`}>
+        
+        <br></br>
         <div className="welcome bg-light p-3 ">
-          <span>Hi, {currentUser.displayName}! Welcome to Expense Tracker</span>
-          <button className="btn btn-danger ml-2" onClick={this.logout}>
-            Exit
-          </button>
+        <div> <UserProfile /></div>
+          <span><b>Hi, {currentUser.displayName}! Welcome to Expense Tracker</b></span>
+          <button
+  className="btn ml-2"
+  onClick={this.logout}
+  style={{ backgroundColor: 'purple', color: 'white' }} >
+  Logout
+</button>
+
+
+
           {!isPremiumActivated && (
-            <button className="btn btn-success ml-2" onClick={this.handleActivatePremium}>
-              Activate Premium
-            </button>
-          )}
           
+           <button className="btn btn-success ml-2" onClick={this.handleActivatePremium}>
+           Activate Premium
+         </button>
+        
+          )}
           {isPremiumActivated && (
-          <>
-            
-            <button className="btn btn-secondary ml-2" onClick={this.toggleDarkMode}>
-            Toggle Dark Mode
-          </button>
-          <button className="btn btn-info ml-2" onClick={this.handleDownloadCSV}>
-            Download CSV
-          </button>
-          </>
-        )}
-          </div>
-        <div className="expenseForm mt-3">
-          <div className="row">
-            <div className="col-4">
-              <input
-                type="text"
-                className="form-control"
-                name="description"
-                value={description}
-                placeholder="Description"
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <div className="col-3">
-              <input
-                type="text"
-                className="form-control"
-                name="price"
-                value={price}
-                placeholder="Price"
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <div className="col-2">
-              <select
-                className="form-control"
-                name="selectedCategory"
-                value={selectedCategory}
-                onChange={this.handleInputChange}
-              >
-                <option value="">Select Category</option>
-                {expenseCategories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="col-2">
-              <input
-                type="date"
-                className="form-control"
-                name="date"
-                value={date}
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <div className="col-1">
-              <button className="btn btn-primary" onClick={this.handleAddExpense}>
-                Add
+            <>
+              <button className="btn btn-secondary ml-2" onClick={this.toggleDarkMode}>
+                Toggle Dark Mode
               </button>
-            </div>
-          </div>
+              <button className="btn btn-info ml-2" onClick={this.handleDownloadCSV}>
+                Download CSV
+              </button>
+            </>
+          )}
+        </div>
+        <div className="expenseForm mt-3">
+        <div className="row">
+  <div className="col-md-3">
+    <input
+      type="text"
+      className="form-control form-control-sm"
+      name="description"
+      value={description}
+      placeholder="Description"
+      onChange={this.handleInputChange}
+    />
+  </div>
+  <div className="col-md-2">
+    <input
+      type="text"
+      className="form-control form-control-sm"
+      name="price"
+      value={price}
+      placeholder="Price"
+      onChange={this.handleInputChange}
+    />
+  </div>
+  <div className="col-md-2">
+    <select
+      className="form-control form-control-sm"
+      name="selectedCategory"
+      value={selectedCategory}
+      onChange={this.handleInputChange}
+    >
+      <option value="">Select Category</option>
+      {expenseCategories.map((category) => (
+        <option key={category} value={category}>
+          {category}
+        </option>
+      ))}
+    </select>
+  </div>
+  <div className="col-md-2">
+    <input
+      type="date"
+      className="form-control form-control-sm"
+      name="date"
+      value={date}
+      onChange={this.handleInputChange}
+    />
+  </div>
+  <div className="col-md-1">
+    <button className="btn btn-primary btn-md" onClick={this.handleAddExpense}>
+      Add
+    </button>
+  </div>
+         </div>
           <div className="expenseList mt-3">
             {expenses.map((expense) => (
               <Transaction
@@ -281,7 +289,7 @@ logout = () => {
         </div>
         <div className="totals mt-3">
           <div>Total Expenses: {this.getTotalExpenses()}</div>
-          <div>Total Price: ${this.getTotalPrice()}</div>
+          <div>Total Price: Rs.{this.getTotalPrice()}</div>
         </div>
       </div>
     );

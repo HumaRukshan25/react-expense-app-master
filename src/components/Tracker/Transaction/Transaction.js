@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import './Transaction.css'
+import './Transaction.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const Transaction = ({ expense, onEdit, onDelete }) => {
   const [isEditing, setEditing] = useState(false);
   const [updatedExpense, setUpdatedExpense] = useState(expense);
@@ -46,15 +48,24 @@ const Transaction = ({ expense, onEdit, onDelete }) => {
             value={updatedExpense.date}
             onChange={handleInputChange}
           />
-          <button onClick={handleSave}>Save</button>
+          <button className="btn btn-success" onClick={handleSave}>
+            Save
+          </button>
         </>
       ) : (
         <>
-          <div>{expense.description}</div>
-          <div>{expense.price}</div>
-          <div>{expense.date}</div>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <div className="totals mt-3">
+            <div>Description: {expense.description}</div>
+            <div>Price: {expense.price}</div>
+            <div>Category: {expense.category}</div>
+            <div>Date: {expense.date}</div>
+            <button className="btn btn-info" onClick={handleEdit}>
+              Edit
+            </button>
+            <button className="btn btn-danger" onClick={handleDelete}>
+              Delete
+            </button>
+          </div>
         </>
       )}
     </div>
@@ -62,4 +73,3 @@ const Transaction = ({ expense, onEdit, onDelete }) => {
 };
 
 export default Transaction;
-

@@ -4,7 +4,6 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import fire from '../../config/Fire';
 import firebase from 'firebase/app';
 import 'firebase/firestore'; // Import Firestore
-
 import './UserProfile.css';
 
 class UserProfile extends Component {
@@ -108,55 +107,61 @@ class UserProfile extends Component {
     render() {
         const isProfileIncomplete =
             !this.state.userName || !this.state.userEmail || !this.state.userBio || !this.state.userContact;
-
         return (
-            <div>
-                <h6>User Profile</h6>
-
-                {/* Profile Icon */}
-                <FontAwesomeIcon icon={faUserCircle} onClick={this.toggleEditMode} />
+            <div className="user-profile-container">
+                {/* Profile Icon */}        
+                <FontAwesomeIcon icon={faUserCircle} onClick={this.toggleEditMode}
+  className="profile-icon"
+  size="3x"  style={{ color: 'purple' }}// You can adjust the size attribute, e.g., "2x", "3x", "4x", etc.
+/>
 
                 {isProfileIncomplete && (
-                    <div className="profile-incomplete-message">
+                    <div className="alert alert-danger profile-incomplete-message">
                         <p>Your profile is incomplete. Please fill in all required fields.</p>
                     </div>
                 )}
 
                 {this.state.editMode ? (
                     <>
-                        <label>Name:</label>
-                        <input
-                            type="text"
-                            name="userName"
-                            value={this.state.userName}
-                            onChange={this.handleInputChange}
-                        />
-                        <label>Email:</label>
-                        <input
-                            type="email"
-                            name="newEmail"
-                            value={this.state.newEmail}
-                            onChange={this.handleInputChange}
-                        />
-                        <label>Bio:</label>
-                        <textarea
-                            name="userBio"
-                            value={this.state.userBio}
-                            onChange={this.handleInputChange}
-                        />
-                        <label>Contact:</label>
-                        <input
-                            type="text"
-                            name="userContact"
-                            value={this.state.userContact}
-                            onChange={this.handleInputChange}
-                        />
-                        <button onClick={this.saveChanges}>Save Changes</button>
+                   <label className="mt-2">Name:</label>
+<input
+    type="text"
+    name="userName"
+    value={this.state.userName}
+    onChange={this.handleInputChange}
+    className="form-control"
+/>
+
+<label className="mt-2">Bio:</label>
+<textarea
+    name="userBio"
+    value={this.state.userBio}
+    onChange={this.handleInputChange}
+    className="form-control"
+/>
+
+<label className="mt-2">Contact:</label>
+<input
+    type="text"
+    name="userContact"
+    value={this.state.userContact}
+    onChange={this.handleInputChange}
+    className="form-control"
+/>
+
+                        <br></br>
+                        <button onClick={this.saveChanges} className="btn btn-primary">
+                            Save Changes
+                        </button>
                     </>
                 ) : (
                     <>
-                        <p>{this.state.userEmail}</p>
-                        <button onClick={this.toggleEditMode}>Edit Profile</button>
+                        <p><b>{this.state.userEmail}</b></p>
+                        
+                        <button onClick={this.toggleEditMode} className="btn btn-secondary btn-sm">
+    Edit Profile
+</button>
+
                     </>
                 )}
             </div>

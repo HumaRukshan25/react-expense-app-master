@@ -81,7 +81,7 @@ class Login extends Component {
             className="submitBtn"
             type="submit"
             onClick={this.login}
-            value="ENTER"
+            value="Login"
           />
         </form>
 

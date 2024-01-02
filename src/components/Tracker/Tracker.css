@@ -1,65 +1,73 @@
-/* Tracker.css */
+/* Import Bootstrap */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom styles for Tracker component */
+.container {
+    max-width: 800px; /* Adjust the maximum width of the container as needed */
+}
+
 .lavender-background {
-    background-color: lavender;
-    padding: 20px; /* Adjust padding as needed */
-    border-radius: 10px; /* Optional: Add border-radius for rounded corners */
-  }
-  
-  .welcome {
+    background-color: #b5b5e4;
+}
+
+.dark-theme {
+    background-color: #282c35;
+    color: #0b0b0b;
+}
+
+.welcome {
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .expenseForm {
-    margin-top: 20px;
-  }
-  
-  .expenseList {
-    margin-top: 20px;
-  }
-  
-  .totals {
-    margin-top: 20px;
+}
+
+.expenseForm {
+    margin-top: 15px;
+}
+
+.expenseForm input,
+.expenseForm select,
+.expenseForm textarea {
+    margin-bottom: 10px;
+    
+    
+}
+
+.expenseList {
+    margin-top: 15px;
+}
+
+.totals {
+    margin-top: 15px;
     font-weight: bold;
+    margin-left: 100px;
+    margin-right: 100px;
+   
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .expenseForm .col-md-4,
+    .expenseForm .col-md-3,
+    .expenseForm .col-md-2,
+    .expenseForm .col-md-1 {
+        margin-bottom: 5px;
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .expenseForm .col-md-1 {
+        margin-top: 0px;
+    }
+}
+.col-md-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  /* Optional: Customize button styles */
-  .btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-  }
   
-  .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-  }
-  /* Tracker.css */
-
-
-
-.light-theme {
-  background-color: #ffffff; /* Light background color */
-  color: #000000; /* Light text color */
-}
-
-/* Add styles for dark theme */
-.dark-theme {
-  background-color: #2b2b2b; /* Dark background color */
-  color: #ffffff; /* Dark text color */
-}
-
-/* Additional styles for the toggle button */
-.toggle-button {
-  background-color: #3498db; /* Toggle button background color */
-  color: #ffffff; /* Toggle button text color */
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-/* Adjust styles when dark mode is active */
-.dark-theme .toggle-button {
-  background-color: #e74c3c; /* Dark mode toggle button background color */
-}

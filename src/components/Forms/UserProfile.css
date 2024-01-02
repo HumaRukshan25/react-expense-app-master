@@ -1,45 +1,28 @@
+.user-profile-container {
+  margin-top: 20px;
+}
 
+.profile-icon {
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 20px; /* Adjust the value based on your preference */
+}
 
 .profile-incomplete-message {
-    color: red;
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+/* Adjust styling for smaller screens */
+@media (max-width: 768px) {
+  .user-profile-container {
+      text-align: center;
+      margin-top: 0px;
   }
-  
-  /* Style for the FontAwesome icon */
-  .fa-user-circle {
-    font-size: 36px;
-    margin: 10px;
-    cursor: pointer;
+  .profile-icon {
+      margin-right: 0;
+      margin-bottom: 10px;
   }
-  
-  /* Style for the input fields and labels in edit mode */
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+  .profile-incomplete-message {
+      margin-top: 5px;
   }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  /* Style for the button in edit mode */
-  /* Style for the button in edit mode */
-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 10px; /* Add some space below the button */
-  }
-  
-  /* Style for the button in view mode */
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+}

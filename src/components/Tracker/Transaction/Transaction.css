@@ -1,22 +1,33 @@
+/* Transaction.css */
+
 .transactionItem {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .transactionItem input {
-    margin-bottom: 5px;
-    padding: 5px;
-  }
-  
-  .transactionItem button {
-    margin-right: 5px;
-    padding: 5px 10px;
-    
-    cursor: pointer;
-  }
-  
-  .transactionItem div {
-    margin-bottom: 5px;
-  }
-  
+  background-color: #f8f9fa; /* Light gray background color */
+  border: 1px solid #dee2e6; /* Border color */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.transactionItem input {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.transactionItem button {
+  background-color: #28a745; /* Green color for buttons */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.transactionItem button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.totals {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Add more styles as needed */
