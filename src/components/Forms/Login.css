@@ -1,23 +1,29 @@
 .regField {
     width: 100%;
-    background-color: #e2e2e2;
-    color: #000;
+    background-color: #82a8bb;
+    color: #df5050;
     border: 1px solid #ddd;
-    padding: 15px;
+    padding: 10px; /* Adjust padding */
     box-sizing: border-box;
-    font-size: 15px;
+    font-size: 14px; /* Adjust font size */
 }
 
 .submitBtn {
     width: 100%;
-    background: #0d0a0e;
+    background: #7a498a;
     border: 0;
     color: #fff;
-    padding: 15px;
+    padding: 10px; /* Adjust padding */
     margin: 10px 0 0 0;
-    font-size: 15px;
+    font-size: 14px; /* Adjust font size */
     cursor: pointer;
 }
+
+ .regField {
+    padding: 10px; /* Adjust padding */
+    font-size: 14px; /* Adjust font size */
+}
+
 
 .underLine {
     text-align: center;

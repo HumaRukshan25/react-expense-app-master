@@ -25,3 +25,10 @@
   .Spinner > .ImgSpinner {
     max-width: 30px;
   }
+
+
+.main-container {
+  background-color: #7a498a; /* Replace with your desired color */
+  /* ... (other styles for Main component) */
+}
+

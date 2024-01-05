@@ -35,14 +35,18 @@ export default class Main extends Component {
 
         if (this.state.user === 1){
             return (
+              
+              <div className="main-container">
               <div className="mainBlock">
                 <div className="Spinner">
                   <img src={Spinner} alt="Spinner" className="ImgSpinner" />
                 </div>
-              </div>);
+              </div>
+              </div>
+              );
         }
 
-        return (
+        return (  
             <>
                 {!this.state.user ? (
                     <div className="mainBlock">
@@ -55,11 +59,11 @@ export default class Main extends Component {
                           <span className="underLine">Have an account already? <button onClick={() => this.formSwitcher(!this.state.formSwitcher ? 'register' : 'login')} 
                           className="linkBtn">Sign in here</button>
                         </span>
-                        )
+                       )
                       }
                     </div>
-                  ) : (<Tracker />)}
-            </>
+                  ) :(<Tracker />)} 
+            </>    
         );
     }
 }
